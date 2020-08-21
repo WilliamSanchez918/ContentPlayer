@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../signUp.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>File Management</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">Upload <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="#">Settings</a>
+                <a class="nav-item nav-link disabled" href="/">Network</a>
+                <a class="nav-item nav-link disabled" href="#">Coming Soon</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <h1>Settings</h1>
+        <p class="lead">Configure enviornmentals - <span></span><br></p>
+        <hr>
+        <h3>Cloud Sync
+            <%=checked%>
+        </h3>
+        <form action="#" id="form" enctype="multipart/form-data" method="POST">
+            <select onchange="" id="CloudSync" class="dropdown form-control" name="sync">
+                <option id="enabled" value="true">Enabled</option>
+                <option id="disable" value="false">Disabled</option>
+                </select>
+            <label for="CloudSync"> Cloud Sync</label><br>
+            <h3>Update Settings</h3>
+            <div class="md-form mb-0">
+                <p>Here I am:
+                    <span class="danger">Note - This feature only Works if Cloud Sync is enabled</span>
+                </p>
+
+
+                <select onchange="" id="listing" class="dropdown form-control" name="frequency">
+                    <option id="1" value="1">Once a Day</option>
+                    <option id="2" value="2">Once a Week</option>
+                    <option id="3" value="3">Once a month</option>
+                    <option id="4" value="4">Never</option>
+                    </select>
+
+                <input class="btn btn-primary btn-lg" type="submit" value="save" onclick="validateForm()" style="margin-top: 15px;">
+        </form>
+        </div>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="config.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+
+        <script>
+            //Prevent Default form submission
+            document.getElementById("form").addEventListener("click", function(event) {
+                event.preventDefault()
+            });
+            //Configs setting from JSON File (config.json)
+            //Update frequency
+            a = <%-update %>;
+            let x = document.getElementById(a);
+            console.log(x);
+            x.selected = "selected"
+
+            //Sync enable/disable
+            b = <%-checked %>;
+            if (b) {
+                let y = document.getElementById("enabled");
+                y.selected = "selected";
+                console.log(b)
+            } else {
+                let y = document.getElementById("disable")
+                y.selected = "selected";
+                console.log(`False`);
+
+            }
+
+
+
+
+            function validateForm() {
+
+                let clouds = document.getElementById('CloudSync').value;
+                let downloads = document.getElementById("listing").value;
+                let formData = `${clouds}&${downloads}`
+                console.log(formData)
+                window.location.replace(`/config/apply/${formData}`)
+
+            }
+        </script>
+</body>
+
+</html>

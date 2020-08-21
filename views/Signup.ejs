@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../signUp.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>File Management</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/">Upload <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/config">Settings</a>
+                <a class="nav-item nav-link disabled" href="#">Network</a>
+                <a class="nav-item nav-link disabled" href="#">Coming Soon</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <h1>Upload Tool</h1>
+        <p class="lead">Use this tool to upload content to your players! <br></p>
+
+
+        <input type="checkbox" id="CloudSync" name="CloudSync" value="Sync" <%=checked%>>
+        <label for="CloudSync"> Cloud Sync</label><br>
+
+        <h1>Single File Upload</h1>
+        <hr>
+
+        <form action="/upload" enctype="multipart/form-data" method="POST">
+
+            <span>Upload New Content:</span>
+            <input type="file" name="content" required/> <br>
+            <input class="btn btn-primary btn-lg" type="submit" value="submit" style="margin-top: 15px">
+        </form>
+    </div>
+
+    <div>
+
+        <div class="card" style="width: 100%;">
+            <div class="card-header">
+                Local Content
+            </div>
+            <ul class="list-group list-group-flush" id="localFs">
+                <% localDownloads.forEach(function(item){ %>
+                    <li>
+                        <%= item %> <a href="/delete/<%=item%>" class="trash">x</a>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
